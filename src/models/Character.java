@@ -24,6 +24,9 @@ public class Character {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "url", length = 255, nullable = false)
+    private String url;
+
     @Column(name = "character_name", length = 255, nullable = false)
     private String character_name;
 
@@ -50,6 +53,22 @@ public class Character {
 
     public String getCharacter_name() {
         return character_name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setCharacter_name(String character_name) {
