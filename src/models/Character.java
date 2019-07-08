@@ -40,7 +40,7 @@ public class Character {
     private String hometown;
 
     @Column(name = "first_appearance", length = 255, nullable = false)
-    private Integer first_appearanse;
+    private Integer first_appearance;
 
     @Column(name = "voice_actor", length = 255, nullable = false)
     private String voice_actor;
@@ -99,12 +99,12 @@ public class Character {
         this.hometown = hometown;
     }
 
-    public Integer getFirst_appearanse() {
-        return first_appearanse;
+    public Integer getFirst_appearance() {
+        return first_appearance;
     }
 
-    public void setFirst_appearanse(Integer first_appearanse) {
-        this.first_appearanse = first_appearanse;
+    public void setFirst_appearanse(Integer first_appearance) {
+        this.first_appearance = first_appearance;
     }
 
     public String getVoice_actor() {

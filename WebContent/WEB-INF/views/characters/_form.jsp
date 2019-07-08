@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<input type="text" name="url" value="${character.url}" />
+<br /><br />
+
 <label for="title"> キャラクター名</label><br />
 <input type="text" name="character_name" value="${character.character_name}" />
 <br /><br />
