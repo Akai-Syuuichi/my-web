@@ -9,10 +9,10 @@
                     <a href="${pageContext.request.contextPath}/show?id=${character.id}">
                         <c:out value="${character.id}" />
                     </a>
-                    <p> <img src="url"> </p>
-                    ：<c:out value="${character.character_name}"></c:out> &gt; <c:out value="${character.age}" />
-                    &gt; <c:out value="${character.gender}" /> &gt; <c:out value="${character.hometown}" />
-                    &gt; <c:out value="${character.first_appearance}" /> &gt; <c:out value="${character.voice_actor}" />
+                    ：<img src="${chracter.url}"> &gt;<c:out value="${character.character_name}" />
+                    &gt; <c:out value="${character.age}" /> &gt; <c:out value="${character.gender}" />
+                    &gt; <c:out value="${character.hometown}" /> &gt; <c:out value="${character.first_appearance}" />
+                    &gt; <c:out value="${character.voice_actor}" />
                     &gt; <c:out value="${character.occupation}" /> &gt; <c:out value="${character.speciality}" />
                 </li>
             </c:forEach>

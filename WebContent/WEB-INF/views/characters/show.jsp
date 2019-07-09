@@ -17,6 +17,6 @@
         <p>特技：<c:out value="${character.speciality}" /></p>
 
         <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
-
+        <p><a href="${pageContext.request.contextPath}/edit?id=${character.id}">このキャラクター情報を編集する</a></p>
     </c:param>
 </c:import>
