@@ -11,7 +11,14 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getAllCharacters", query = "SELECT m FROM Character AS m ORDER BY m.id DESC")
+        @NamedQuery(
+                name = "getAllCharacters",
+                query = "SELECT m FROM Character AS m ORDER BY m.id DESC"
+                    ),
+        @NamedQuery(
+                name = "getCharactersCount",
+                query = "SELECT COUNT(m) FROM Character AS m"
+                )
 })
 @Table(name = "characters")
 public class Character {

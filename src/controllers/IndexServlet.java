@@ -32,18 +32,31 @@ public class IndexServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        int page = 1;
+        try {
+            page = Integer.parseInt(request.getParameter("page"));
+        } catch (NumberFormatException e) {
+        }
+
         List<Character> characters = em.createNamedQuery("getAllCharacters", Character.class)
+                .setFirstResult(15 * (page - 1))
+                .setMaxResults(15)
                 .getResultList();
-        response.getWriter().append(Integer.valueOf(characters.size()).toString());
+
+        long characters_count = (long) em.createNamedQuery("getCharactersCount", Long.class)
+                .getSingleResult();
 
         em.close();
 
         request.setAttribute("characters", characters);
+        request.setAttribute("characters_count", characters_count);
+        request.setAttribute("page", page);
 
-        if(request.getSession().getAttribute("flush") != null) {
+        if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
