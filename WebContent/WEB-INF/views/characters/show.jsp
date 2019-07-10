@@ -6,15 +6,47 @@
         <c:choose>
             <c:when test="${message != null}">
                 <h2>id : ${character.id} のキャラクター詳細ページ</h2>
-                <p>画像：<c:out value="${character.url}" /></p>
-                <p>キャラクター名：<c:out value="${character.character_name}" /></p>
-                <p>年齢：<c:out value="${character.age}" /></p>
-                <p>性別：<c:out value="${character.gender}" /></p>
-                <p>出身地：<c:out value="${character.hometown}" /></p>
-                <p>初登場：<c:out value="${characterfirst_appearance}" /></p>
-                <p>声優：<c:out value="${character.voice_actor}" /></p>
-                <p>職業：<c:out value="${characteroccupation}" /></p>
-                <p>特技：<c:out value="${character.speciality}" /></p>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>画像</th>
+                            <td><c:out value="${character.url}" /></td>
+                        </tr>
+                        <tr>
+                            <th>キャラクター名</th>
+                            <td><c:out value="${character.character_name}" /></td>
+                        </tr>
+                        <tr>
+                            <th>年齢</th>
+                            <td><c:out value="${character.age}" /></td>
+                        </tr>
+                        <tr>
+                            <th>性別</th>
+                            <td><c:out value="${character.gender}" /></td>
+                        </tr>
+                        <tr>
+                            <th>出身地</th>
+                            <td><c:out value="${character.hometown}" /></td>
+                        </tr>
+                        <tr>
+                            <th>初登場</th>
+                            <td><c:out value="${character.first_appearance}" /></td>
+                        </tr>
+                        <tr>
+                            <th>声優</th>
+                            <td><c:out value="${character.voice_actor}" /></td>
+                        </tr>
+                        <tr>
+                            <th>職業</th>
+                            <td><c:out value="${character.occupation}" /></td>
+                        </tr>
+                        <tr>
+                            <th>特技</th>
+                            <td><c:out value="${character.speciality}" /></td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
                 <p><a href="${pageContext.request.contextPath}/edit?id=${character.id}">このキャラクター情報を編集する</a></p>
