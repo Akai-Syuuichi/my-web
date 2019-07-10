@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Character;
 import utils.DBUtil;
 
 /**
@@ -30,7 +31,8 @@ public class EditServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
         Character m = em.find(Character.class, Integer.parseInt(request.getParameter("id")));
@@ -39,6 +41,10 @@ public class EditServlet extends HttpServlet {
 
         request.setAttribute("character", m);
         request.setAttribute("_token", request.getSession().getId());
+
+        if (m != null) {
+            request.getSession().setAttribute("character_id", m.getId());
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/characters/edit.jsp");
         rd.forward(request, response);
