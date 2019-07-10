@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<label for="title"> 画像のURL</label><br />
 <input type="text" name="url" value="${character.url}" />
 <br /><br />
 

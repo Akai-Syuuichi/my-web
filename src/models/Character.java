@@ -11,10 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(
-            name = "getAllCharacters",
-            query = "SELECT m FROM Character AS m ORDER BY m.id DESC"
-            )
+        @NamedQuery(name = "getAllCharacters", query = "SELECT m FROM Character AS m ORDER BY m.id DESC")
 })
 @Table(name = "characters")
 public class Character {
@@ -40,7 +37,7 @@ public class Character {
     private String hometown;
 
     @Column(name = "first_appearance", length = 255, nullable = false)
-    private Integer first_appearance;
+    private String first_appearance;
 
     @Column(name = "voice_actor", length = 255, nullable = false)
     private String voice_actor;
@@ -50,10 +47,6 @@ public class Character {
 
     @Column(name = "speciality", length = 255, nullable = false)
     private String speciality;
-
-    public String getCharacter_name() {
-        return character_name;
-    }
 
     public Integer getId() {
         return id;
@@ -69,6 +62,10 @@ public class Character {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getCharacter_name() {
+        return character_name;
     }
 
     public void setCharacter_name(String character_name) {
@@ -99,11 +96,11 @@ public class Character {
         this.hometown = hometown;
     }
 
-    public Integer getFirst_appearance() {
+    public String getFirst_appearance() {
         return first_appearance;
     }
 
-    public void setFirst_appearanse(Integer first_appearance) {
+    public void setFirst_appearance(String first_appearance) {
         this.first_appearance = first_appearance;
     }
 
@@ -130,4 +127,5 @@ public class Character {
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
     }
+
 }

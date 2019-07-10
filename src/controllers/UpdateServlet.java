@@ -13,30 +13,30 @@ import models.Character;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class CreateServlet
+ * Servlet implementation class UpdateServlet
  */
-@WebServlet("/create")
-public class CreateServlet extends HttpServlet {
+@WebServlet("/update")
+public class UpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateServlet() {
+    public UpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String _token = (String) request.getParameter("_token");
         if (_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Character m = new Character();
+            Character m = em.find(Character.class, (Integer) (request.getSession().getAttribute("character_id")));
 
             String url = request.getParameter("url");
             m.setUrl(url);
@@ -66,11 +66,13 @@ public class CreateServlet extends HttpServlet {
             m.setSpeciality(speciality);
 
             em.getTransaction().begin();
-            em.persist(m);
             em.getTransaction().commit();
             em.close();
 
+            request.getSession().removeAttribute("character_id");
+
             response.sendRedirect(request.getContextPath() + "/index");
+
         }
 
     }
