@@ -9,41 +9,55 @@
 
     </div>
 </c:if>
-<label for="title"> 画像のURL</label><br />
+<label for="url"> 画像のURL</label><br />
 <input type="text" name="url" value="${character.url}" />
 <br /><br />
 
-<label for="title"> キャラクター名</label><br />
+<label for="character"> キャラクター名</label><br />
 <input type="text" name="character_name" value="${character.character_name}" />
 <br /><br />
 
-<label for="content">年齢</label><br />
-<input type="text" name="age" value="${character.age}" />
+<label for="aget">年齢</label><br />
+<input type="number" name="age" value="${character.age}" min="0" max="150"/>
 <br /><br />
 
-<label for="content">性別</label><br />
+<label for="gender">性別</label><br />
 <input type="text" name="gender" value="${character.gender}" />
 <br /><br />
 
-<label for="content">初登場</label><br />
+<label for="first_appearance">初登場(原作)</label><br />
 <input type="text" name="first_appearance" value="${character.first_appearance}" />
 <br /><br />
 
-<label for="content">声の出演</label><br />
+<label for="voice_actor">声優</label><br />
 <input type="text" name="voice_actor" value="${character.voice_actor}" />
 <br /><br />
 
-<label for="content">出身地</label><br />
+<label for="homettown">出身地(住所)</label><br />
 <input type="text" name="hometown" value="${character.hometown}" />
 <br /><br />
 
-<label for="content">職業</label><br />
+<label for="occupation">職歴・学歴</label><br />
 <input type="text" name="occupation" value="${character.occupation}" />
 <br /><br />
 
-<label for="content">特技</label><br />
+<label for="speciality">特技</label><br />
 <input type="text" name="speciality" value="${character.speciality}" />
 <br /><br />
 
+<label for="category">所属</label><br />
+<select name="category">
+    <option value="01">毛利探偵事務所</option>
+    <option value="阿笠博士邸">阿笠博士邸</option>
+    <option value="工藤優作邸">工藤優作邸</option>
+    <option value="大阪">大阪</option>
+    <option value="怪盗">怪盗</option>
+    <option value="FBI">FBI</option>
+    <option value="公安">公安</option>
+    <option value="CIA">CIA</option>
+    <option value="黒ずくめの組織">黒ずくめの組織</option>
+</select>
+<br /><br />
+
 <input type="hidden" name="_token" value="${_token}" />
-<button type="submit">投稿</button>
+<button type="submit">登録</button>

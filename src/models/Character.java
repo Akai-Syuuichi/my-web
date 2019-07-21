@@ -11,14 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(
-                name = "getAllCharacters",
-                query = "SELECT m FROM Character AS m ORDER BY m.id DESC"
-                    ),
-        @NamedQuery(
-                name = "getCharactersCount",
-                query = "SELECT COUNT(m) FROM Character AS m"
-                )
+        @NamedQuery(name = "getAllCharacters", query = "SELECT m FROM Character AS m ORDER BY m.id DESC"),
+        @NamedQuery(name = "getCharactersCount", query = "SELECT COUNT(m) FROM Character AS m")
 })
 @Table(name = "characters")
 public class Character {
@@ -34,8 +28,8 @@ public class Character {
     @Column(name = "character_name", length = 255, nullable = false)
     private String character_name;
 
-    @Column(name = "age", length = 255, nullable = false)
-    private Integer age;
+    @Column(name = "age", length = 3, nullable = false)
+    private String age;
 
     @Column(name = "gender", length = 255, nullable = false)
     private String gender;
@@ -54,6 +48,9 @@ public class Character {
 
     @Column(name = "speciality", length = 255, nullable = false)
     private String speciality;
+
+    @Column(name = "category", length = 255, nullable = false)
+    private String category;
 
     public Integer getId() {
         return id;
@@ -79,11 +76,11 @@ public class Character {
         this.character_name = character_name;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -133,6 +130,14 @@ public class Character {
 
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }

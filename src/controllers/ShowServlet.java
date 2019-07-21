@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Character;
 import utils.DBUtil;
 
 /**
@@ -30,7 +31,8 @@ public class ShowServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
         Character m = em.find(Character.class, Integer.parseInt(request.getParameter("id")));

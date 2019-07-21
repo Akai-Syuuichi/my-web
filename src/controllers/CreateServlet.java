@@ -33,7 +33,7 @@ public class CreateServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String _token = (String) request.getParameter("_token");
         if (_token != null && _token.equals(request.getSession().getId())) {
@@ -47,7 +47,7 @@ public class CreateServlet extends HttpServlet {
             String character_name = request.getParameter("character_name");
             m.setCharacter_name(character_name);
 
-            Integer age = Integer.parseInt("age");
+            String age = request.getParameter("age");
             m.setAge(age);
 
             String gender = request.getParameter("gender");
@@ -67,6 +67,9 @@ public class CreateServlet extends HttpServlet {
 
             String speciality = request.getParameter("speciality");
             m.setSpeciality(speciality);
+
+            String category = request.getParameter("category");
+            m.setCategory(category);
 
             List<String> errors = CharacterValidator.validate(m);
             if (errors.size() > 0) {
