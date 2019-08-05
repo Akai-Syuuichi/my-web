@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,8 +34,40 @@ public class IndexServlet extends HttpServlet {
     }
 
     /**
+     * @return
+     * @return
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
+    public static List<Character> buildCriteria(String search, String similar, Integer page) {
+        search = "%" + search + "%";
+        EntityManager manager = DBUtil.createEntityManager();
+
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Character> criteria_query = builder.createQuery(Character.class);
+        Root<Character> root = criteria_query.from(Character.class);
+        criteria_query.select(root)
+                .where(builder.like(root.get(similar).as(String.class), search));
+
+        Query query = manager.createQuery(criteria_query);
+        List<Character> result = query.getResultList();
+
+        return result;
+    }
+
+    public static long buildCountCriteria(String search, String similar, Integer page) {
+        search = "%" + search + "%";
+        EntityManager manager = DBUtil.createEntityManager();
+
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteria_query = builder.createQuery(Long.class);
+        Root<Character> root = criteria_query.from(Character.class);
+        criteria_query.select(builder.count(root))
+                .where(builder.like(root.get(similar).as(String.class), search));
+
+        long query = manager.createQuery(criteria_query).getSingleResult().longValue();
+        return query;
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
@@ -42,19 +78,43 @@ public class IndexServlet extends HttpServlet {
         } catch (NumberFormatException e) {
         }
 
-        List<Character> characters = em.createNamedQuery("getAllCharacters", Character.class)
-                .setFirstResult(15 * (page - 1))
-                .setMaxResults(15)
-                .getResultList();
-
         long characters_count = (long) em.createNamedQuery("getCharactersCount", Long.class)
                 .getSingleResult();
 
-        em.close();
+        String btn = request.getParameter("search");
+        if (btn == null) {
+            List<Character> characters = em.createNamedQuery("getAllCharacters", Character.class)
+                    .setFirstResult(15 * (page - 1))
+                    .setMaxResults(15)
+                    .getResultList();
 
-        request.setAttribute("characters", characters);
-        request.setAttribute("characters_count", characters_count);
-        request.setAttribute("page", page);
+            em.close();
+
+            request.setAttribute("characters", characters);
+            request.setAttribute("characters_count", characters_count);
+            request.setAttribute("page", page);
+
+        } else if (btn.equals("chara")) {
+
+            String nameSearch = request.getParameter("nameSearch");
+            List<Character> result = buildCriteria(nameSearch, "character_name", page);
+            long nameCount = buildCountCriteria(nameSearch, "character_name", page);
+
+            request.setAttribute("characters", result);
+            request.setAttribute("characters_count", nameCount);
+            request.setAttribute("page", page);
+
+        } else if (btn.equals("category")) {
+
+            String categorySearch = request.getParameter("categorySearch");
+            List<Character> result = buildCriteria(categorySearch, "category", page);
+            long categoryCount = buildCountCriteria(categorySearch, "category", page);
+
+            request.setAttribute("characters", result);
+            request.setAttribute("characters_count", categoryCount);
+            request.setAttribute("page", page);
+
+        }
 
         if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
@@ -63,6 +123,7 @@ public class IndexServlet extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/characters/index.jsp");
         rd.forward(request, response);
+
     }
 
 }

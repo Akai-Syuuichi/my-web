@@ -9,55 +9,47 @@
 
     </div>
 </c:if>
-<label for="url"> 画像のURL</label><br />
+<p><label for="url"> 画像のURL</label></p>
 <input type="text" name="url" value="${character.url}" />
-<br /><br />
 
-<label for="character"> キャラクター名</label><br />
+<p><label for="character"> キャラクター名</label></p>
 <input type="text" name="character_name" value="${character.character_name}" />
-<br /><br />
 
-<label for="aget">年齢</label><br />
-<input type="number" name="age" value="${character.age}" min="0" max="150"/>
-<br /><br />
+<p><label for="aget">年齢</label></p>
+<input type="number" name="age" value="${character.age}" min="0" max="150"/>歳
 
-<label for="gender">性別</label><br />
+<p><label for="gender">性別</label></p>
 <input type="text" name="gender" value="${character.gender}" />
-<br /><br />
 
-<label for="first_appearance">初登場(原作)</label><br />
+<p><label for="first_appearance">初登場(原作)</label></p>
 <input type="text" name="first_appearance" value="${character.first_appearance}" />
-<br /><br />
 
-<label for="voice_actor">声優</label><br />
+<p><label for="voice_actor">声優</label></p>
 <input type="text" name="voice_actor" value="${character.voice_actor}" />
-<br /><br />
 
-<label for="homettown">出身地(住所)</label><br />
+<p><label for="homettown">出身地(住所)</label></p>
 <input type="text" name="hometown" value="${character.hometown}" />
-<br /><br />
 
-<label for="occupation">職歴・学歴</label><br />
+<p><label for="occupation">職歴・学歴</label></p>
 <input type="text" name="occupation" value="${character.occupation}" />
-<br /><br />
 
-<label for="speciality">特技</label><br />
+<p><label for="speciality">特技</label></p>
 <input type="text" name="speciality" value="${character.speciality}" />
-<br /><br />
 
-<label for="category">所属</label><br />
-<select name="category">
+<p><label for="category">カテゴリー</label></p>
+<select name="category" >
+    <option disabled selected value="">カテゴリー選択</option>
     <option value="01">毛利探偵事務所</option>
-    <option value="阿笠博士邸">阿笠博士邸</option>
-    <option value="工藤優作邸">工藤優作邸</option>
-    <option value="大阪">大阪</option>
-    <option value="怪盗">怪盗</option>
-    <option value="FBI">FBI</option>
-    <option value="公安">公安</option>
-    <option value="CIA">CIA</option>
-    <option value="黒ずくめの組織">黒ずくめの組織</option>
+    <option value="02">阿笠博士邸</option>
+    <option value="03">工藤優作邸</option>
+    <option value="04">大阪</option>
+    <option value="05">怪盗</option>
+    <option value="06">FBI</option>
+    <option value="07">公安</option>
+    <option value="08">CIA</option>
+    <option value="09">黒ずくめの組織</option>
 </select>
-<br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />
-<button type="submit">登録</button>
+<p><button type="submit">登録</button>
+</p>

@@ -10,7 +10,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <th>画像URL</th>
+                            <th>画像</th>
                             <td><img src="${character.url}" width="300" ></td>
                         </tr>
                         <tr>
@@ -46,17 +46,29 @@
                             <td><c:out value="${character.speciality}" /></td>
                         </tr>
                         <tr>
-                            <th>所属</th>
-                            <td><c:out value="${character.category}" /></td>
+                            <th>カテゴリー</th>
+                            <td>
+                            <c:choose>
+                            <c:when test="${character.category == '01'}">毛利探偵事務所</c:when>
+                            <c:when test="${character.category == '02'}">阿笠博士邸</c:when>
+                            <c:when test="${character.category == '03'}">工藤優作邸</c:when>
+                            <c:when test="${character.category == '04'}">大阪</c:when>
+                            <c:when test="${character.category == '05'}">怪盗</c:when>
+                            <c:when test="${character.category == '06'}">FBI</c:when>
+                            <c:when test="${character.category == '07'}">公安</c:when>
+                            <c:when test="${character.category == '08'}">CIA</c:when>
+                            <c:when test="${character.category == '09'}">黒ずくめの組織</c:when>
+                            </c:choose>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
 
-                <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
                 <p><a href="${pageContext.request.contextPath}/edit?id=${character.id}">キャラクター情報を編集する</a></p>
+                <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
             </c:when>
             <c:otherwise>
-                <h2>お探しのデータは見つかりませんでした。</h2>
+                <h2>キャラクターが登録されていません</h2>
             </c:otherwise>
         </c:choose>
     </c:param>

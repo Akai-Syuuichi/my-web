@@ -16,9 +16,6 @@
             <div id="content">
                 ${param.content}
             </div>
-            <div id="footer">
-                by 羽田　秀吉
-            </div>
         </div>
 
     </body>

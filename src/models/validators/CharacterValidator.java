@@ -138,7 +138,7 @@ public class CharacterValidator {
 
     private static String _validateCategory(String category) {
         if (category == null || category.equals("")) {
-            return "所属を選んでください。";
+            return "カテゴリーを選択してください。";
         }
         return "";
     }
